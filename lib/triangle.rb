@@ -21,6 +21,7 @@ class Triangle
   end
   
   class TriangleError < StandardError
-    
+    def message 
+      "Not a trinagle."
   end
 end
