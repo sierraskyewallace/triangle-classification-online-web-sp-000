@@ -25,3 +25,4 @@ class Triangle
       "Not a trinagle."
   end
 end
+end
