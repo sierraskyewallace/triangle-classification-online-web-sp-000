@@ -1,25 +1,27 @@
 class Triangle
-  attr_accessor :side_1, :side_2, :side_3, :all_sides
-  
-  def initialize(side_1, side_2, side_3)
-    @side_1 = side_1
-    @side_2 = side_2
-    @side_3 = side_3
-    @all_sides = []
-end
-  def kind 
-     if @side_1 == @side_2 && @side_2 == @side_3
-      return :equilateral
-    elsif @side_1 == @side_2 && @side_1 + @side_2 > @side_3 || @side_1 == @side_3 && @side_1 + @side_3 > @side_2 || @side_2 == @side_3 && @side_2 + @side_3 > @side_1
-      return :isosceles
-    elsif @side_1 != @side_2 && @side_2 != @side_3 && @side_1 + @side_2 > @side_3
-      return :scalene
-    else 
-        raise TriangleError
-      end
-    end
-
-  class TriangleError < StandardError
-    puts "Not a triangle."
+    def initialize(x, y, z)
+    @x = x
+    @y = y
+    @z = z
   end
+
+  def kind
+    if x == 0 || y == 0 || z == 0
+      raise TriangleError
+    elsif x + y <= z || x + z <= y || y + z <= x
+      raise TriangleError
+    elsif x == y && y == z
+      kind = :equilateral
+    elsif x == y && x != z || y == z && y != x || x == z && x != y
+      kind = :isosceles
+    else
+      kind = :scalene
+    end
+  end
+end
+
+class TriangleError < StandardError
+  def message 
+    puts "Not a triangle."
+end
 end
